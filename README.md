@@ -23,18 +23,18 @@ The Geolocation App is a Java-based desktop application that allows users to fet
 ### Steps
 
 1. Clone the repository to your local machine.
-   git clone https://github.com/yourusername/Geolocation-App.git
+   > git clone https://github.com/yourusername/Geolocation-App.git
 
 2. Navigate into the project folder.
-   cd Geolocation-App
+   > cd Geolocation-App
 
 3. Input your API Key from https://ipgeolocation.io/ in the Main Class
 
 4. Build the project.
-   mvn clean install
+   > mvn clean install
 
 5. Run the application.
-   java -jar target/geolocation-app.jar
+   > java -jar target/geolocation-app.jar
 
 ## Usage
 
