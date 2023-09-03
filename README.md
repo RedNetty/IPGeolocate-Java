@@ -23,7 +23,7 @@ The Geolocation App is a Java-based desktop application that allows users to fet
 ### Steps
 
 1. Clone the repository to your local machine.
-   > git clone https://github.com/yourusername/Geolocation-App.git
+   > git clone https://github.com/RedNetty/IPGeolocate-Java.git
 
 2. Navigate into the project folder.
    > cd Geolocation-App
