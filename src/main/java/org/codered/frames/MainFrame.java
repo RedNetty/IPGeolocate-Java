@@ -3,6 +3,7 @@ package org.codered.frames;
 import io.ipgeolocation.api.Geolocation;
 import io.ipgeolocation.api.GeolocationParams;
 import io.ipgeolocation.api.IPGeolocationAPI;
+import org.codered.IPGeolocator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainFrame extends JFrame {
-    private final String apiKey = "";
+
     private final IPGeolocationAPI api;
     private final JTextField ipField;
     private final JTextArea displayArea;
@@ -50,7 +51,7 @@ public class MainFrame extends JFrame {
         progressBar = initializeProgressBar();
         mainPanel.add(progressBar, BorderLayout.SOUTH);
 
-        api = new IPGeolocationAPI(apiKey);
+        api = new IPGeolocationAPI(IPGeolocator.getGeoAPIKey());
 
         addMouseListenerToButtons(fetchSelfButton, fetchIpButton);
         addActionListenerToButtons(fetchSelfButton, fetchIpButton);
