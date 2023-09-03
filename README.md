@@ -18,6 +18,7 @@ The Geolocation App is a Java-based desktop application that allows users to fet
 
 - Java JDK 8 or higher
 - Maven
+- https://ipgeolocation.io/ API KEY
 
 ### Steps
 
@@ -27,10 +28,12 @@ The Geolocation App is a Java-based desktop application that allows users to fet
 2. Navigate into the project folder.
    cd Geolocation-App
 
-3. Build the project.
+3. Input your API Key from https://ipgeolocation.io/ in the Main Class
+
+4. Build the project.
    mvn clean install
 
-4. Run the application.
+5. Run the application.
    java -jar target/geolocation-app.jar
 
 ## Usage
