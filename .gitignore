@@ -1,2 +1,10 @@
 # Project exclude paths
 /target/
+# Build artifacts and OS files
+*.class
+*.jar
+!*-sources.jar
+.DS_Store
+Thumbs.db
+*.log
+
