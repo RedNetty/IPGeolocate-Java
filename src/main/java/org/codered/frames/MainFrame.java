@@ -1,4 +1,4 @@
-package org.codered.frames;
+﻿package org.codered.frames;
 
 import io.ipgeolocation.api.Geolocation;
 import io.ipgeolocation.api.GeolocationParams;
@@ -13,10 +13,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainFrame extends JFrame {
+    private static final Logger LOGGER = Logger.getLogger(MainFrame.class.getName());
 
     private final IPGeolocationAPI api;
     private final JTextField ipField;
@@ -63,12 +65,12 @@ public class MainFrame extends JFrame {
     private Font loadFont() {
         Font font = new Font("Times New Roman", Font.PLAIN, 16);
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/resources/null.otf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, MainFrame.class.getResourceAsStream("/null.otf"));
             font = font.deriveFont(Font.PLAIN, 10);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);
         } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "Could not load custom font, using fallback", e);
         }
         return font;
     }
@@ -76,9 +78,9 @@ public class MainFrame extends JFrame {
     private BufferedImage loadImage() {
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("src/main/resources/icon.png"));
+            img = ImageIO.read(MainFrame.class.getResource("/icon.png"));
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "Could not load icon image", e);
         }
         return img;
     }
