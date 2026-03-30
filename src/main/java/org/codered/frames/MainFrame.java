@@ -170,16 +170,16 @@ public class MainFrame extends JFrame {
         progressBar.setIndeterminate(true);
         progressBar.setVisible(true);
         displayArea.setText("Fetching data...");
-        SwingUtilities.invokeLater(() -> {
+        // Network call must run off the EDT to keep the UI responsive
+        new Thread(() -> {
             Geolocation geolocation = fetchData(source);
-            updateDisplay(geolocation);
-        });
+            SwingUtilities.invokeLater(() -> updateDisplay(geolocation));
+        }, "GeolocateFetchThread").start();
     }
 
     private Geolocation fetchData(Object source) {
         String ipAddress = ipField.getText().equalsIgnoreCase("Enter IPv4 Address") ? "" : ipField.getText().trim();
         GeolocationParams geoParams = new GeolocationParams();
-        JFrame.setDefaultLookAndFeelDecorated(true);
         if (!ipAddress.isEmpty()) {
             geoParams.setIPAddress(ipAddress);
         }
@@ -188,6 +188,12 @@ public class MainFrame extends JFrame {
     }
 
     private void updateDisplay(Geolocation geolocation) {
+        if (geolocation == null) {
+            displayArea.setText("Error: Could not retrieve geolocation data. Check your API key and network connection.");
+            progressBar.setIndeterminate(false);
+            progressBar.setVisible(false);
+            return;
+        }
         displayArea.setText(""); // Clear text area
         displayArea.append("City: " + geolocation.getCity() + "\n\n");
         displayArea.append("State: " + geolocation.getStateProvince() + "\n\n");
